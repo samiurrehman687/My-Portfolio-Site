@@ -1,15 +1,15 @@
 from django.db import models
-from django_ckeditor_5.fields import CKEditor5Field 
-# Create your models here.
+from django_ckeditor_5.fields import CKEditor5Field
+
 #.......................................
 #       Project Model
 #.......................................
 class ProjectModel(models.Model):
-    ProName = models.CharField(max_length=255 , blank=False)
+    ProName = models.CharField(max_length=255, blank=False)
     Picture = models.ImageField(upload_to='projects/', blank=False)
     Description = CKEditor5Field('text', config_name='extends')
-    Github_link = models.URLField(blank=True , null=True)
-    Live_site_link = models.URLField(blank=False , null=False)
+    Github_link = models.URLField(blank=True, null=True)
+    Live_site_link = models.URLField(blank=False, null=False)
 
     def __str__(self):
         return self.ProName
@@ -27,11 +27,10 @@ class ContactModel(models.Model):
         return self.name
 
 
-
 #.......................................
-#       Site Data Model Model
+#       Site Data Model
 #.......................................
-class SiteDataMOdel(models.Model):
+class SiteDataModel(models.Model):
     Name_Choices = [
         ('logo', 'Site Logo'),
         ('home_heading_skill', 'Home Heading Skill'),
@@ -46,29 +45,26 @@ class SiteDataMOdel(models.Model):
         ('contact_number', 'Contact Number'),
         ('resume', 'Resume')
     ]
-    name = models.CharField(max_length=100 , choices=Name_Choices , unique=True , null=False)
-    pictures = models.ImageField(upload_to='site_pics/', null=True , default='not define',blank = True,)
+    name = models.CharField(max_length=100, choices=Name_Choices, unique=True)
+    pictures = models.ImageField(upload_to='site_pics/', null=True, blank=True)
     text = CKEditor5Field('text', config_name='extends', default='not define')
-    email = models.EmailField(max_length=255 , null = True, blank = True)
-    contact_no = models.CharField(blank=True , null= True,default='not define')
-    links = models.URLField(blank=True , null=True )
-    resume = models.FileField( upload_to='projects/files/',blank=True ,null=True)
-    
+    email = models.EmailField(max_length=255, null=True, blank=True)
+    contact_no = models.CharField(max_length=20, blank=True, null=True)
+    links = models.URLField(max_length=200, blank=True, null=True)
+    resume = models.FileField(upload_to='projects/files/', blank=True, null=True)
+
     def __str__(self):
         return self.name
-    
-
 
 
 #.......................................
 #       Education Model
 #.......................................
-
 class EducationModel(models.Model):
     DEGREE_CHOICES = [
         ('BSc', "Bachelor of Science"),
         ('BSSE', "BS Software Engineering"),
-        ('Intermediate' , 'Intermediate'),
+        ('Intermediate', 'Intermediate'),
         ('BA', "Bachelor of Arts"),
         ('BCom', "Bachelor of Commerce"),
         ('BBA', "Bachelor of Business Administration"),
@@ -79,39 +75,38 @@ class EducationModel(models.Model):
         ('MBA', "Master of Business Administration"),
         ('PhD', "Doctor of Philosophy"),
     ]
-    degree_name = models.CharField(max_length=255 , null = False , choices=DEGREE_CHOICES)
-    institute = models.CharField(max_length=255 , blank=True)
-    program = models.CharField(max_length=255 , blank=True)
+    degree_name = models.CharField(max_length=255, choices=DEGREE_CHOICES)
+    institute = models.CharField(max_length=255, blank=True)
+    program = models.CharField(max_length=255, blank=True)
     percentage = models.FloatField()
-    start_date = models.DateField(blank=True ,null=True)
-    end_date = models.DateField(blank=True ,null=True)
-    resume = models.FileField(upload_to='projects/files/', null=True , blank=True)
-    experience = CKEditor5Field('text', config_name='extends' , null= True)
-
+    start_date = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
+    resume = models.FileField(upload_to='projects/files/', null=True, blank=True)
+    experience = CKEditor5Field('text', config_name='extends', null=True, blank=True)
 
     def __str__(self):
         return self.degree_name
-    
+
+
 #.......................................
 #       Languages Model
 #.......................................
 class LanguagesModel(models.Model):
-    l_name = models.CharField(max_length=255 , unique=True)
+    l_name = models.CharField(max_length=255, unique=True)
     note = models.TextField(max_length=500)
 
     def __str__(self):
         return self.l_name
-    
+
 
 #.......................................
 #       Under Construction Model
 #.......................................
-class underconstruction(models.Model):
+class UnderConstruction(models.Model):
     is_under_const = models.BooleanField(default=False)
-    uc_note = models.TextField(blank= True , null= True , help_text= 'Note for underconstruciton..')
-    uc_duration = models.DateTimeField(blank=True, null=True, help_text='End durations for underconstructioin.....')
+    uc_note = models.TextField(blank=True, null=True, help_text='Note for under construction..')
+    uc_duration = models.DateTimeField(blank=True, null=True, help_text='End duration for under construction..')
     uc_update_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f'Under Construction : {self.is_under_const}'
-    
