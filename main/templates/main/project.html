@@ -1,0 +1,64 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block title %}Projects | Sami Ur Rehman{% endblock title %}
+
+{% block content %}
+<div class="projects-header">
+    <h1>My Projects</h1>
+    <p>Here are some of the projects I have built using Python, Django and modern web technologies.</p>
+</div>
+<div class="card-container">
+
+  {% for project in projects %}
+  <div class="card">
+
+      <img src="{{ project.Picture.url }}" alt="{{ project.ProName }}">
+
+      <div class="card-body">
+
+          <h3>
+              <a href="{{ project.Live_site_link }}" target="_blank" rel="noopener noreferrer">
+                  {{ project.ProName }}
+              </a>
+          </h3>
+
+          {% if project.Github_link %}
+              <h3>
+                  
+                  <a href="{{ project.Github_link }}" target="_blank" rel="noopener noreferrer" style='text-decoration:none;'>
+                  <img src="{% static 'main/images/GitHub_Mark.png' %}" alt="GitHub" style='height: 40px; width: 40px;'>GitHub
+                  </a>
+          </h3>
+          {% endif %}
+
+          <p class="project-text-short">
+              {{ project.Description|truncatewords:20 |safe}}
+          </p>
+          {% if project.Description|wordcount > 20 %}
+            <a href="#popup-{{ project.id }}" class="read-btn">
+              Read more
+          </a>
+          {% endif %}
+          
+
+      </div> <!-- card-body end -->
+
+  </div> <!-- card end -->
+
+  <!-- POPUP MUST BE OUTSIDE CARD -->
+  <div id="popup-{{ project.id }}" class="popup-overlay">
+      <div class="popup-box">
+
+          <a href="#" class="popup-close">&times;</a>
+
+          <h2><a href="{{project.Live_site_link}}" target='_blank' rel='noopener noreferrer' style='text-decoration:none;'>GO Site</a></h2>
+
+          <div class="popup-content">
+              {{ project.Description|safe|linebreaks }}
+          </div>
+
+      </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock content %}

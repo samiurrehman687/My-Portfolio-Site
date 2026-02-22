@@ -1,0 +1,86 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block title %}About | Sami Ur Rehman{% endblock title %}
+
+{% block content %}
+
+<section class="about-section">
+    <div class='about-header' style='padding-top:25px;'>
+        <h1 style='text-align: center; font-size: 42px;;'>About Me</h1>
+    </div>
+    <div class="container">
+
+        <!-- Top Section (Image + Intro) -->
+        <div class="about-top">
+
+            <!-- Profile Image -->
+            <div>
+                <img src={{about_pic.url}} alt="Sami Ur Rehman" class="profile-img">
+            </div>
+
+            <!-- Intro Paragraph -->
+            <div class="about-text">
+                <h2>Introcution</h2>
+                <p>
+                   {{about|safe}}
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Bottom Section (Education + Experience) -->
+        <div class="about-bottom">
+
+            <!-- Education -->
+            <div class="section-box">
+                <h2>Education</h2>
+                {% for education in educations %}
+                    <ul style="padding-left:20px">
+                        <h3>{{education.degree_name}}</h3>
+                            <div style="padding-left:50px">
+                                <li><b>Institue</b> : {{education.institute}}</li>
+                                <li><b>Program</b> : {{education.program}}</li>
+                                <li><b>Percentage/CGPA</b> : {{education.percentage}}</li>
+                                <li><b>Start Date</b> : {{education.start_date}}</li>
+                                <li><b>End_date</b> : {{education.end_date}}"</li>
+                            </div>
+                            <br>
+
+                    </ul>
+                {%empty%}
+                    <p>'Not found'</p>
+                {% endfor %}
+            </div>
+
+            <!-- Experience -->
+            <div class="section-box">
+                <h3>Experience</h3>
+                <p><strong>Backend Developer (Self Projects)</strong></p>
+                <p>{{my_experience|safe}}</p>
+                <h3 style="padding-left:20px">Projects</h3>
+                <ul style="padding-left:50px">
+                    {% for project in projects %}
+                        <li>
+                            <a href="{{project.Live_site_link}}" target='_blank' style="text-decoration: none; color: black">{{project.ProName}}</a>
+                        </li>
+                    {% empty %}
+                        <li>No projects yet.</li>
+                    {% endfor %}
+                    
+                </ul>
+            </div>
+            <div class='section-box'>
+                <h2>Languages</h2>
+                {% for language in languages  %}
+                <li><h4>{{language.l_name}}</h4></li>
+                {%empty%}
+                <li>Record Not Found</li>
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,5 @@
+/* ckeditor_custom.css */
+.ck-editor__editable {
+    color: black;  /* Default text color black */
+    font-family: Arial, sans-serif; /* Optional: font style */
+}

@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*.swo
+
+# Virtual environment
+venv/
+ENV/
+env/
+*.env
+
+# Django
+*.sqlite3
+/media/
+staticfiles/
+
+# Logs
+logs/
+*.log
+
+# IDE / Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node / JS (agar ho)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Coverage / Testing
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/

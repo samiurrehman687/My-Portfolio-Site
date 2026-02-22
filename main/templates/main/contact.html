@@ -1,0 +1,53 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block title %}Contact | Sami Ur Rehman{% endblock title %}
+
+{% block content %}
+
+<section class="contact-section">
+    <h4>Connect with me</h4>
+    <h1 class="contact-heading">Get In Touch</h1>
+    <p>I'd love to hear from you! If you have any questions, comments or feedback, please use the form <br>below.</p>
+    <br>
+    <div class="contact-container">
+        
+
+        <form method="POST" class="contact-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-submit">Send Message</button>
+        </form>
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li class="message {{ message.tags }}">
+                {{ message }}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+    </div>
+    <br>
+    <h3>
+                
+        <a href="{{ linkedin }}" target="_blank" rel="noopener noreferrer" style='text-decoration:none;'>
+            <img src="{% static 'main/images/liinkedin_logo.png' %}" alt="linkedin" style='height: 30px; width: 120px; padding-right:10px;'>
+        </a>
+        <a href="{{github}}" target="_blank" rel="noopener noreferrer" style='text-decoration:none;'>
+            <img src="{% static 'main/images/GitHub_Mark.png' %}" alt="GitHub" style='height:60px; width: 60px; padding-left:10px; padding-top:10px'>
+        </a>
+
+    </h3>
+    
+    <br>
+    <div class="contact-info">
+            <a href="{% url 'home' %}"><img src="{{logo_url}}" alt="Site Logo"></a>
+            <h5>📧&nbsp&nbsp&nbsp<a href="mailto:{{my_email}}">{{my_email}}</a></h5> 
+            <br> 
+            <h5 style='font-size:20px;'>Contact No : {{Contact}}</h5>
+        </div>
+</section>
+
+{% endblock content %}
