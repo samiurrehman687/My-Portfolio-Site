@@ -121,27 +121,60 @@ STATICFILES_DIRS = [
 
 CKEDITOR_5_CONFIGS = {
     "default": {
-        "toolbar": ["bold", "italic", "link", "undo", "redo", "fontColor"],  # fontColor added
+        "toolbar": {
+            "items": [
+                'undo', 'redo',
+                '|',
+                'heading',
+                '|',
+                'fontFamily', 'fontSize', 'fontColor', 'fontBackgroundColor',
+                '|',
+                'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
+                '|',
+                'link', 'uploadImage', 'blockQuote', 'codeBlock',
+                '|',
+                'alignment',
+                '|',
+                'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent'
+            ],
+            "shouldNotGroupWhenFull": True
+        },
         "placeholder": "Type your text here...",
         "link": {
-                "defaultTarget": "_blank" 
+            "defaultTarget": "_blank"
         },
         "height": 200,
         "fontColor": "#000000",
+        "fontSize": {          # numeric font sizes
+            "options": [
+                "12px", "14px", "16px", "18px", "20px",
+                "24px", "30px", "36px", "48px", "60px"
+            ]
+        }
     },
     "extends": {
-        "toolbar": [
-            "heading",
-            "bold",
-            "italic",
-            "link",
-            "undo",
-            "redo",
-            "imageUpload",
-            "fontColor"  # added fontColor for text color
-        ],
+        "toolbar": {
+            "items": [
+                'undo', 'redo',
+                '|',
+                'heading',
+                '|',
+                'fontFamily', 'fontSize', 'fontColor', 'fontBackgroundColor',
+                '|',
+                'bold', 'italic',
+                '|',
+                'link', 'uploadImage'
+            ],
+            "shouldNotGroupWhenFull": True
+        },
         "placeholder": "Write project description here...",
         "height": 300,
+        "fontSize": {
+            "options": [
+                "12px", "14px", "16px", "18px", "20px",
+                "24px", "30px", "36px", "48px", "60px"
+            ]
+        }
     },
 }
 
